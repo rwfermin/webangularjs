@@ -1,0 +1,15 @@
+<div class = "panel" ng-repeat = "store in storeCtrl.products" ng-hide = "{{store.soldOut}}">
+    <div class = "panel-heading">
+        <h2>{{store.name}}</h2>
+    </div>
+    <div class = "panel-body">
+        <img ng-hide = "!{{store.images.length}}" ng-src = "{{store.images[0].full}}" class = "img-responsive" />
+        <h3>{{store.price | currency}}</h3>
+        <p>{{store.description}}</p>
+        <button ng-class = "{'disabled' : !store.canPurchase}" type = "button" class = "btn btn-primary">Add to Cart</button>
+
+        <hr />
+
+        <products-tab></products-tab>
+    </div>
+</div>
