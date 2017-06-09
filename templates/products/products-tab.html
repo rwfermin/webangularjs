@@ -1,0 +1,11 @@
+<ul class = "nav nav-pills">
+    <li ng-class = "{active: panel.activeTab(1)}">
+        <a href ng-click = "panel.selectedTab(1)">Varieties</a>
+    </li>
+    <li ng-class = "{active: panel.activeTab(2)}">
+        <a href ng-click = "panel.selectedTab(2)">Reviews</a>
+    </li>
+</ul>
+
+<div class = "panel" ng-show = "panel.activeTab(1)">Varieties</div>
+<div class = "panel" ng-show = "panel.activeTab(2)">Reviews</div>

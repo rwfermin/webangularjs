@@ -1,6 +1,5 @@
 (function() {
-
-    var app = angular.module('appstore', []);
+    var app = angular.module('app', ['app-products', 'ngRoute']);
 
     /* Data */
     var gems = [
@@ -114,34 +113,41 @@
         }
     ];
 
+    /* Configuration */
+    app.config(function($routeProvider) {
+        $routeProvider
+        .when('/home', {
+            templateUrl: 'templates/home/home.html',
+            controller: 'homeController'
+        })
+        .when('/products', {
+            templateUrl: 'templates/products/products.html',
+            controller: 'productController'
+        })
+        .otherwise({
+            redirectTo: '/home'
+        })
+    });
+
     /* Controllers */
-    app.controller('storecontroller', function() {
+    app.controller('homeController', function() {
+
+    });
+
+    app.controller('productController', function() {
         this.heading = "Our Store";
         this.products = gems;       
     });
 
-    /* Directives */
-    app.directive('productsTitle', function() {
-        return {
-            restrict: "A",
-            templateUrl: "templates/product-title.html"
-        }
-    });
+    app.controller('tabController', function() {
+        this.tab = 1;
 
-    app.directive('productsInfo', function() {
-        return {
-            restrict: "E",
-            templateUrl: "templates/products-info.html"
-        }
-    });
+        this.selectedTab = function(setTab) {
+            this.tab = setTab;
+        };
 
-    app.directive('productsTab', function() {
-        return {
-            restrict: "E",
-            templateUrl: "templates/products-tab.html",
-            controller: function() {
-
-            }
-        }
+        this.activeTab = function(active) {
+            return this.tab === active;
+        };
     });
 })();
